@@ -17,15 +17,15 @@ Install
  `/etc/munin/plugin-conf.d/munin-node`) and add this at the
  bottom:
 
-    [minecraft_*]
-    env.password=<password>
+```[minecraft_*]
+env.password=<password>```
 
  Replacing <password> with the rcon password. If you have
  rcon running on a different server and/or a nonstandard
  port, add:
 
-    env.port=1234
-    env.host=300.403.22.1
+```env.port=1234
+env.host=300.403.22.1```
 
 4. Restart munin-node and your server should start reporting
  stats. You'll see `Rcon connection from: /127.0.0.1` at the
