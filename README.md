@@ -17,7 +17,8 @@ Install
  `/etc/munin/plugin-conf.d/munin-node`) and add this at the
  bottom:
 
-```[minecraft_*]
+```
+[minecraft_*]
 env.password=<password>
 ```
 
@@ -25,7 +26,8 @@ env.password=<password>
  rcon running on a different server and/or a nonstandard
  port, add:
 
-```env.port=1234
+```
+env.port=1234
 env.host=300.403.22.1
 ```
 
