@@ -19,7 +19,7 @@ Install
 
 ```
 [minecraft_*]
-env.password=<password>
+env.password <password>
 ```
 
  Replacing <password> with the rcon password. If you have
@@ -27,8 +27,8 @@ env.password=<password>
  port, add:
 
 ```
-env.port=1234
-env.host=300.403.22.1
+env.port 1234
+env.host 300.403.22.1
 ```
 
 4. Restart munin-node and your server should start reporting
