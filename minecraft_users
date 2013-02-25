@@ -80,9 +80,9 @@ if len(sys.argv) > 1:
         print "users.label Users"
         config = True
 else:
-#    print "maxusers.value " + a[2].split("\xa7c ")[1].replace(" MB","")
-#    print "users.value " + a[3].split("\xa7c ")[1].replace(" MB","")
-     print "maxusers.value " + a[6].split("\xa7c")[1].replace("\xa76","")
-     print "users.value " + a[2].split("\xa7c")[1].replace("\xa76","")
+     match = re.match('There are (?P<cur>\d+)/(?P<max>\d+) players online:', a)
+     if match:
+         print 'maxusers.value {max}\nusers.value {cur}'.format(**match.groupdict())
+
 
 
