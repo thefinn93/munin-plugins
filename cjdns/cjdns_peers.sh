@@ -3,7 +3,7 @@
 if [ "$1" = "config" ]; then
     echo "graph_title Cjdns Peers"
     echo "graph_info This graph shows the number of peers cjdns is connected to."
-    echo "graph_category networking"                                                                                  
+    echo "graph_category network"
     echo "peers.label peers"
 fi
 
