@@ -12,3 +12,7 @@ env.host 127.0.0.1
 env.port 11234
 env.pass super_duper_secure
 ```
+
+A sample output, from Dan's Seattle node:
+
+![Seanode CJDNS peer, last day](https://hostedmunin.com/plot/meshwith.me-4948/cjdns_peers/day.png)
