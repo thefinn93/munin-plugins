@@ -1,4 +1,6 @@
-Some munin plugins for a minecraft server.
+Some munin plugins I wrote. Still moving from being a Minecraft specific
+repo, so if you see any references to Minecraft where they don't belong,
+let me know (or fix it and pull request)
 
 Install
 -------
