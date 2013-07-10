@@ -1,16 +1,14 @@
-These plugins interact with CJDNS. Currently the only one, cjdns_peers,
+These plugins interact with [cjdns](https://github.com/cjdelisle/cjdns).
+Currently the only one, cjdns_peers,
 checks the number of active peers you have connected. It requires
 [cjdcmd](https://github.com/inhies/cjdcmd). If cjdcmd isn't in the path,
-set it in the config. Additionally, if the host, port or password need
-to be specified (ie because the user that munin runs as doesn't have a 
-`.cjdnsadmin` file), specify those as well:
+set it in the config. Recent versions of cjdcmd do not require .cjdnsadmin.
+Specifying cjdroute.conf is enough:
 
 ```
-[cjdns_peers]
-env.CJDCMD /home/user/projects/go/bin/cjdcmd
-env.host 127.0.0.1
-env.port 11234
-env.pass super_duper_secure
+[cjdns_*]
+env.PATH /path/to/cjdcmd/directory
+env.file /path/to/my/cjdroute.conf
 ```
 
 A sample output, from Dan's Seattle node:
