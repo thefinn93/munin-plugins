@@ -14,12 +14,5 @@ Install
  `/etc/munin/plugin-conf.d/munin-node`) and add the appropriate information.
  See the README's in each subdirectory for more specific infomation.
 
-2.5 It takes time for `cjdcmd peers` to output all results, so the plugin may
-  timeout periodically. It might make sense to increase timeout by
-  adding/editing the `timeout` line in `munin-node.conf` from 20 seconds (the
-  default value) to something like 60:
-  
-  timeout 60
-
 3. Restart munin-node and your server should start reporting
  stats. 
