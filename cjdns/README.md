@@ -11,6 +11,13 @@ env.PATH /path/to/cjdcmd/directory
 env.file /path/to/my/cjdroute.conf
 ```
 
+It takes time for cjdcmd peers to output all results, so the plugin may
+timeout periodically. It might make sense to increase timeout by
+adding/editing the timeout line in `munin-node` from 20 seconds
+(the default value) to something like 60:
+
+timeout 60
+
 A sample output, from Dan's Seattle node:
 
 ![Seanode CJDNS peer, last day](https://hostedmunin.com/plot/meshwith.me-4948/cjdns_peers/day.png)
