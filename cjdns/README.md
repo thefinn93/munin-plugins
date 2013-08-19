@@ -30,6 +30,18 @@ user finn
 env.HOME /home/finn
 ```
 
+You'll need to make sure that the `cjdnsadmin` library is in your python path. cjdnsadmin is in
+the `contrib/python/` folder of the cjdns git, and you can find your python path(s) by running:
+
+```
+$ python
+>>> import sys
+>>> sys.path
+```
+
+That will print out a list of directories, just ensure that it's in one of them
+
+
 Additionally, if the enviromenal variable NAMES is set to a non empty string, it will attempt to
 import that string and replace the labels on the graph with those names. This is handy because
 no one remembers public keys:
