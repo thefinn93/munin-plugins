@@ -31,8 +31,8 @@ if len(sys.argv) > 1:
         print "graph_category network"
         config = True
 
-def name(pubkey):
-    name = pubkey
+def name(peer):
+    name = peer['pubkey']
     if os.getenv("NAMES") != None and os.getenv("NAMES") != "":
         try:
             namefile = json.load(open(os.getenv("NAMES")))
@@ -42,7 +42,9 @@ def name(pubkey):
             sys.stderr.write("Error parsing namefile " + os.getenv("NAMES") + " - is it valid JSON?\n")
         else:
             if pubkey in namefile:
-                name = namefile[pubkey]
+                name = namefile[peer['pubkey']]
+            elif "user" in peer:
+                name = peer['user']
     return name
 
 more = True
@@ -57,11 +59,11 @@ while more:
 
 for peer in peers:
     if config:
-        print peer['publicKey'].replace(".k", "") + "in.label " + name(peer['publicKey'])
+        print peer['publicKey'].replace(".k", "") + "in.label " + name(peer)
         print peer['publicKey'].replace(".k", "") + "in.type DERIVE"
         print peer['publicKey'].replace(".k", "") + "in.graph no"
         print peer['publicKey'].replace(".k", "") + "in.min 0"
-        print peer['publicKey'].replace(".k", "") + "out.label " + name(peer['publicKey'])  
+        print peer['publicKey'].replace(".k", "") + "out.label " + name(peer)
         print peer['publicKey'].replace(".k", "") + "out.type DERIVE"
         print peer['publicKey'].replace(".k", "") + "out.negative " + peer['publicKey'].replace(".k", "") + "in"
         print peer['publicKey'].replace(".k", "") + "out.min 0"
