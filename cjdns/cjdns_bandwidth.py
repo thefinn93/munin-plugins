@@ -34,7 +34,7 @@ if len(sys.argv) > 1:
         config = True
 
 def name(peer):
-    name = peer['pubkey']
+    name = peer['publicKey']
     if os.getenv("NAMES") != None and os.getenv("NAMES") != "":
         try:
             namefile = json.load(open(os.getenv("NAMES")))
@@ -43,8 +43,8 @@ def name(peer):
         except ValueError:
             sys.stderr.write("Error parsing namefile " + os.getenv("NAMES") + " - is it valid JSON?\n")
         else:
-            if pubkey in namefile:
-                name = namefile[peer['pubkey']]
+            if peer['publicKey'] in namefile:
+                name = namefile[peer['publicKey']]
             elif "user" in peer:
                 name = peer['user']
     return name
