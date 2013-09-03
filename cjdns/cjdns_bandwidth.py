@@ -4,6 +4,8 @@ import os
 import sys
 import json
 
+sys.path.append("/opt/cjdns/contrib/python/cjdnsadmin")
+
 try:
     import cjdnsadmin
 except ImportError:
