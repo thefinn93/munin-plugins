@@ -35,6 +35,8 @@ if len(sys.argv) > 1:
 
 def name(peer):
     name = peer['publicKey']
+    if "user" in peer:
+        name = peer['user']
     if os.getenv("NAMES") != None and os.getenv("NAMES") != "":
         try:
             namefile = json.load(open(os.getenv("NAMES")))
@@ -45,8 +47,6 @@ def name(peer):
         else:
             if peer['publicKey'] in namefile:
                 name = namefile[peer['publicKey']]
-            elif "user" in peer:
-                name = peer['user']
     return name
 
 more = True
