@@ -16,7 +16,7 @@ graph_vlabel Bars"""
 else:
     import requests
     modem = "192.168.15.1"
-    if os.getenv("MODEM") != "":
+    if os.getenv("MODEM") != "" and os.getenv("MODEM") != None:
         modem = os.getenv("MODEM")
     status = requests.get("http://" + modem + "/cgi-bin/webcm?getpage=/usr/www/wimax_status.html").content.strip().split(":")
     bars = status[3]
