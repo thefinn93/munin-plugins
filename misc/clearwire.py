@@ -10,8 +10,10 @@ if len(sys.argv) > 1:
 if config:
     print """graph_title Clear Bars
 graph_info This graph shows the number or bars on the clear modem.
-graph_category wireless                                                                                                                                        
+graph_category wireless
 bars.label Bars
+bars.draw AREASTACK
+bars.color 00FF00
 graph_vlabel Bars"""
 else:
     import requests
