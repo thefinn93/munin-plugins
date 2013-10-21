@@ -30,7 +30,7 @@ if len(sys.argv) > 1:
     if sys.argv[1] == "config":
         print "graph_title cjdns bandwidth"
         print "graph_vlabel bytes"
-        print "graph_category network"
+        print "graph_category cjdns"
         config = True
 
 def name(peer):

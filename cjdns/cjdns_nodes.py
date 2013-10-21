@@ -28,7 +28,7 @@ if len(sys.argv) > 1:
     if sys.argv[1] == "config":
         print "graph_title Hyperboria known nodes"
 #        print "graph_vlabel nodes"
-        print "graph_category network"
+        print "graph_category cdns"
         print "nodes.label nodes"
         config = True
 

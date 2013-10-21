@@ -13,7 +13,7 @@ if len(sys.argv) > 1:
 if config:
     print """graph_title Cjdns Peers
 graph_info This graph shows the number of peers cjdns is connected to.
-graph_category network
+graph_category cjdns
 graph_vlabel peers
 peers.label peers
 peers.info Average number of peers for the last five minutes
