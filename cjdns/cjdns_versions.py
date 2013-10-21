@@ -21,7 +21,7 @@ def getVersions():
         for route in table['routingTable']:
             if not route['ip'] in nodes:
                 nodes.append(route['ip'])
-                print "Pinging %s..." % route['ip']
+                #print "Pinging %s..." % route['ip']
                 if timeout is not None:
                     ping = cjdns.RouterModule_pingNode(route['ip'], timeout)
                 else:
