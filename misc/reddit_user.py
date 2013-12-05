@@ -7,7 +7,7 @@ if len(sys.argv) > 1:
     if sys.argv[1] == "config":
         config = True
 
-user = os.getenv("username", "waaghals")
+user = os.getenv("username")
 
 if config:
     print "graph_title Reddit Karma"

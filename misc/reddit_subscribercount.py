@@ -3,7 +3,7 @@ import requests
 import os,sys
 
 try:
-    subs = os.getenv("subs", "darknetplan").split(",")
+    subs = os.getenv("subs").split(",")
 except:
     sys.exit(1)
 
