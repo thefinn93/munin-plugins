@@ -12,7 +12,7 @@ user = os.getenv("username", "waaghals")
 if config:
     print "graph_title Reddit Karma"
     print "graph_info This graph shows the amount of karma that " + user + " has."
-    print "graph_category misc"
+    print "graph_category reddit"
     print "link.label Link Karma"
     print "comment.label Comment Karma"
 else:
