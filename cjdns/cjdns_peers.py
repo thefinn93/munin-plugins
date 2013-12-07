@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import sys
+import sys,os
 try:
     from cjdnsadmin import connect,connectWithAdminInfo
 except ImportError:
