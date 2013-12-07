@@ -1,14 +1,17 @@
 #!/usr/bin/env python
 import sys, os
 try:
-    from cjdnsadmin import connectWithAdminInfo
+    from cjdnsadmin import connect,connectWithAdminInfo
 except ImportError:
-    sys.path.append("/opt/cjdns/contrib/python/cjdnsadmin")
-    from cjdnsadmin import connectWithAdminInfo
-cjdns = connectWithAdminInfo()
-timeout = 1000
-if os.getenv("TIMEOUT") is not None:
-	timeout = os.getenv("TIMEOUT")
+    sys.path.append(os.getenv("cjdnsadmin","/opt/cjdns/contrib/python/cjdnsadmin"))
+    from cjdnsadmin import connect,connectWithAdminInfo
+    
+if os.getenv("cjdns_password") is not None:
+    cjdns = connect(os.getenv("cjdns_ip", "127.0.0.1"), int(os.getenv("cjdns_port", "11234")), os.getenv("cjdns_password"))
+else:
+    cjdns = connectWithAdminInfo()
+
+timeout = int(os.getenv("TIMEOUT", "1000"))
 
 def getVersions():
     more = True
