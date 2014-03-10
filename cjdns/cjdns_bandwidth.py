@@ -63,11 +63,11 @@ for peer in peers:
         print "peer%sin.label %s" % (peer['publicKey'][0:10],  name(peer))
         print "peer%sin.type DERIVE" % peer['publicKey'][0:10]
         print "peer%sin.graph no" % peer['publicKey'][0:10]
-        print "peer%sin.draw AREASTACK" % peer['publicKey'][0:10]
+        print "peer%sin.draw STACK" % peer['publicKey'][0:10]
         print "peer%sin.min 0" % peer['publicKey'][0:10]
         print "peer%sout.label %s" % (peer['publicKey'][0:10],  name(peer))
         print "peer%sout.type DERIVE" % peer['publicKey'][0:10]
-        print "peer%sout.draw AREASTACK" % peer['publicKey'][0:10]
+        print "peer%sout.draw STACK" % peer['publicKey'][0:10]
         print "peer%sout.negative peer%sin" % (peer['publicKey'][0:10], peer['publicKey'][0:10])
         print "peer%sout.min 0" % peer['publicKey'][0:10]
 
