@@ -60,15 +60,15 @@ while more:
 
 for peer in peers:
     if config:
-        print peer['publicKey'].replace(".k", "") + "in.label " + name(peer)
-        print peer['publicKey'].replace(".k", "") + "in.type DERIVE"
-        print peer['publicKey'].replace(".k", "") + "in.graph no"
-        print peer['publicKey'].replace(".k", "") + "in.min 0"
-        print peer['publicKey'].replace(".k", "") + "out.label " + name(peer)
-        print peer['publicKey'].replace(".k", "") + "out.type DERIVE"
-        print peer['publicKey'].replace(".k", "") + "out.negative " + peer['publicKey'].replace(".k", "") + "in"
-        print peer['publicKey'].replace(".k", "") + "out.min 0"
+        print peer['publicKey'][0:20] + "in.label " + name(peer)
+        print peer['publicKey'][0:20] + "in.type DERIVE"
+        print peer['publicKey'][0:20] + "in.graph no"
+        print peer['publicKey'][0:20] + "in.min 0"
+        print peer['publicKey'][0:20] + "out.label " + name(peer)
+        print peer['publicKey'][0:20] + "out.type DERIVE"
+        print peer['publicKey'][0:20] + "out.negative " + peer['publicKey'][0:20] + "in"
+        print peer['publicKey'][0:20] + "out.min 0"
 
     else:
-        print peer['publicKey'].replace(".k", "") + "in.value " + str(peer['bytesIn'])
-        print peer['publicKey'].replace(".k", "") + "out.value " + str(peer['bytesOut'])
+        print peer['publicKey'][0:20] + "in.value " + str(peer['bytesIn'])
+        print peer['publicKey'][0:20] + "out.value " + str(peer['bytesOut'])
