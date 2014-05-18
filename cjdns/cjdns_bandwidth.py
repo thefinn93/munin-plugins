@@ -27,9 +27,6 @@ config = False
 
 if len(sys.argv) > 1:
     if sys.argv[1] == "config":
-        print "graph_title cjdns bandwidth"
-        print "graph_vlabel bytes"
-        print "graph_category cjdns"
         config = True
 
 def name(peer):
@@ -59,18 +56,22 @@ while more:
      page += 1
 
 for peer in peers:
+    print "multigraph cjdns_%s" % peer['publicKey'][0:10]
     if config:
-        print "peer%sin.label %s" % (peer['publicKey'][0:10],  name(peer))
-        print "peer%sin.type DERIVE" % peer['publicKey'][0:10]
-        print "peer%sin.graph no" % peer['publicKey'][0:10]
-        print "peer%sin.draw STACK" % peer['publicKey'][0:10]
-        print "peer%sin.min 0" % peer['publicKey'][0:10]
-        print "peer%sout.label %s" % (peer['publicKey'][0:10],  name(peer))
-        print "peer%sout.type DERIVE" % peer['publicKey'][0:10]
-        print "peer%sout.draw STACK" % peer['publicKey'][0:10]
-        print "peer%sout.negative peer%sin" % (peer['publicKey'][0:10], peer['publicKey'][0:10])
-        print "peer%sout.min 0" % peer['publicKey'][0:10]
+        print "graph_title cjdns bandwidth for %s" % name(peer)
+        print "graph_vlabel bits in (-) / out (+) per \${graph_period}"
+        print "graph_category cjdns"
+        print "peer_%sin.label %s" % (peer['publicKey'][0:10],  name(peer))
+        print "peer_%sin.type DERIVE" % peer['publicKey'][0:10]
+        print "peer_%sin.graph no" % peer['publicKey'][0:10]
+        print "peer_%sin.draw STACK" % peer['publicKey'][0:10]
+        print "peer_%sin.min 0" % peer['publicKey'][0:10]
+        print "peer_%sout.label %s" % (peer['publicKey'][0:10],  name(peer))
+        print "peer_%sout.type DERIVE" % peer['publicKey'][0:10]
+        print "peer_%sout.draw STACK" % peer['publicKey'][0:10]
+        print "peer_%sout.negative peer%sin" % (peer['publicKey'][0:10], peer['publicKey'][0:10])
+        print "peer_%sout.min 0\n" % peer['publicKey'][0:10]
 
     else:
-        print "peer%sin.value %s" % (peer['publicKey'][0:10], str(peer['bytesIn']))
-        print "peer%sout.value %s" %  (peer['publicKey'][0:10], str(peer['bytesOut']))
+        print "peer_%sin.value %s" % (peer['publicKey'][0:10], str(peer['bytesIn']))
+        print "peer_%sout.value %s\n" %  (peer['publicKey'][0:10], str(peer['bytesOut']))
