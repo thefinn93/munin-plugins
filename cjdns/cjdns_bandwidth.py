@@ -61,17 +61,17 @@ for peer in peers:
         print "graph_title cjdns bandwidth for %s" % name(peer)
         print "graph_vlabel bits in (-) / out (+) per \${graph_period}"
         print "graph_category cjdns"
-        print "peer_%sin.label %s" % (peer['publicKey'][0:10],  name(peer))
-        print "peer_%sin.type DERIVE" % peer['publicKey'][0:10]
-        print "peer_%sin.graph no" % peer['publicKey'][0:10]
-        print "peer_%sin.draw STACK" % peer['publicKey'][0:10]
-        print "peer_%sin.min 0" % peer['publicKey'][0:10]
-        print "peer_%sout.label %s" % (peer['publicKey'][0:10],  name(peer))
-        print "peer_%sout.type DERIVE" % peer['publicKey'][0:10]
-        print "peer_%sout.draw STACK" % peer['publicKey'][0:10]
-        print "peer_%sout.negative peer%sin" % (peer['publicKey'][0:10], peer['publicKey'][0:10])
-        print "peer_%sout.min 0\n" % peer['publicKey'][0:10]
+        print "in.label %s" % name(peer)
+        print "in.type DERIVE"
+        print "in.graph no"
+        print "in.draw STACK"
+        print "in.min 0"
+        print "out.label %s" % name(peer)
+        print "out.type DERIVE"
+        print "out.draw STACK"
+        print "out.negative peer%sin" % peer['publicKey'][0:10]
+        print "out.min 0\n"
 
     else:
-        print "peer_%sin.value %s" % (peer['publicKey'][0:10], str(peer['bytesIn']))
-        print "peer_%sout.value %s\n" %  (peer['publicKey'][0:10], str(peer['bytesOut']))
+        print "in.value %s" % str(peer['bytesIn'])
+        print "out.value %s\n" % str(peer['bytesOut'])
