@@ -56,10 +56,10 @@ while more:
      page += 1
 
 for peer in peers:
-    print "multigraph cjdns_%s" % peer['publicKey'][0:10]
+    print "multigraph cjdns_%s" % peer['publicKey'][0:9]
     if config:
         print "graph_title cjdns bandwidth for %s" % name(peer)
-        print "graph_vlabel bits in (-) / out (+) per \${graph_period}"
+        print "graph_vlabel bits in (-) / out (+)"
         print "graph_category cjdns"
         print "in.label %s" % name(peer)
         print "in.type DERIVE"
@@ -69,7 +69,7 @@ for peer in peers:
         print "out.label %s" % name(peer)
         print "out.type DERIVE"
         print "out.draw STACK"
-        print "out.negative peer%sin" % peer['publicKey'][0:10]
+        print "out.negative peer%sin" % peer['publicKey'][0:9]
         print "out.min 0\n"
 
     else:
