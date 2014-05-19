@@ -46,32 +46,40 @@ def name(peer):
     return name
 
 more = True
-peers = []
+peers = {}
 page = 0
 
 while more:
      data = cjdns.InterfaceController_peerStats(page)
-     peers += data['peers']
+     for peer in data['peers']:
+       peername = name(peer)
+       if not peername in peers:
+         peers[peername] = []
+       peers[peername].append(peer)
      more = "more" in data
      page += 1
 
+#print json.dumps(peers, sort_keys=True, indent=4, separators=(',', ': '))
+
 for peer in peers:
-    print "multigraph cjdns_%s" % peer['publicKey'][0:9]
+    print "multigraph cjdns_%s" % peer
     if config:
-        print "graph_title cjdns bandwidth for %s" % name(peer)
+        print "graph_title cjdns bandwidth for %s" % peer
         print "graph_vlabel bits"
         print "graph_category cjdns"
-        print "in.label %s" % name(peer)
-        print "in.type DERIVE"
-        print "in.graph no"
-        print "in.draw STACK"
-        print "in.min 0"
-        print "out.label %s" % name(peer)
-        print "out.type DERIVE"
-        print "out.draw STACK"
-        print "out.negative in"
-        print "out.min 0\n"
+        for node in peers[peer]:
+          print "in_%s.label %s" % (node['publicKey'][0:10], node['publicKey'])
+          print "in_%s.type DERIVE" % node['publicKey'][0:10]
+          print "in_%s.graph no" % node['publicKey'][0:10]
+          print "in_%s.draw STACK" % node['publicKey'][0:10]
+          print "in_%s.min 0" % node['publicKey'][0:10]
+          print "out_%s.label %s" % (node['publicKey'][0:10], node['publicKey'])
+          print "out_%s.type DERIVE" % node['publicKey'][0:10]
+          print "out_%s.draw STACK" % node['publicKey'][0:10]
+          print "out_%s.negative in" % node['publicKey'][0:10]
+          print "out_%s.min 0\n" % node['publicKey'][0:10]
 
     else:
-        print "in.value %s" % str(peer['bytesIn'])
-        print "out.value %s\n" % str(peer['bytesOut'])
+        for node in peers[peer]:
+            print "in_%s.value %s" % (node['publicKey'][0:10], str(node['bytesIn']))
+            print "out_%s.value %s\n" % (node['publicKey'][0:10], str(node['bytesOut']))
