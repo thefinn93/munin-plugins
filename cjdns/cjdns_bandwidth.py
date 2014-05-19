@@ -129,11 +129,9 @@ for peer in peers:
           print "in_%s.label %s" % (node['publicKey'][0:10], "%s in" % PublicToIp6_convert(node['publicKey']))
           print "in_%s.type DERIVE" % node['publicKey'][0:10]
           print "in_%s.graph no" % node['publicKey'][0:10]
-          print "in_%s.draw STACK" % node['publicKey'][0:10]
           print "in_%s.min 0" % node['publicKey'][0:10]
           print "out_%s.label %s" % (node['publicKey'][0:10], "%s out" % PublicToIp6_convert(node['publicKey']))
           print "out_%s.type DERIVE" % node['publicKey'][0:10]
-          print "out_%s.draw STACK" % node['publicKey'][0:10]
           print "out_%s.negative in_%s" % (node['publicKey'][0:10], node['publicKey'][0:10])
           print "out_%s.min 0\n" % node['publicKey'][0:10]
 
