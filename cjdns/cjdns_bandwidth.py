@@ -123,7 +123,7 @@ for peer in peers:
     print "multigraph cjdns_%s" % peer.replace(" ", "_").replace(".","_")
     if config:
         print "graph_title cjdns bandwidth for %s" % peer
-        print "graph_vlabel bits"
+        print "graph_vlabel Bytes in (+) and out (-)"
         print "graph_category cjdns"
         for node in peers[peer]:
           print "in_%s.label %s" % (node['publicKey'][0:10], PublicToIp6_convert(node['publicKey']))
