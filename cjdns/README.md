@@ -52,9 +52,9 @@ and a sample file:
 ```
 
 Note that this will create one graph for every `authorizedPassword` currently in
-use and every outgoing peer. If one password is used multiple times it will get one
-graph. 7f3d83d is the last commit without this. If there is significant demand I'll
-make this disableable.
+use and every outgoing peer. If one password is used multiple times it will get
+one graph with multiple lines. 7f3d83d is the last commit without this. If there
+is significant demand I'll make this disableable.
 
 ## cjdns_nodes
 Graphs the number of unique nodes in your routing table. This is a somewhat good
