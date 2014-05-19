@@ -120,7 +120,7 @@ while more:
 #print json.dumps(peers, sort_keys=True, indent=4, separators=(',', ': '))
 
 for peer in peers:
-    print "multigraph cjdns_%s" % peer.replace(" ", "_")
+    print "multigraph cjdns_%s" % peer.replace(" ", "_").replace(".","_")
     if config:
         print "graph_title cjdns bandwidth for %s" % peer
         print "graph_vlabel bits"
