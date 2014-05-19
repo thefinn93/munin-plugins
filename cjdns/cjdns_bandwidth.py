@@ -30,7 +30,7 @@ if len(sys.argv) > 1:
         config = True
 
 def name(peer):
-    name = peer['publicKey'][0:10]
+    name = peer['publicKey'][0:9]
     if "user" in peer:
         name = peer['user']
     if os.getenv("NAMES") != None and os.getenv("NAMES") != "":
@@ -76,7 +76,7 @@ for peer in peers:
           print "out_%s.label %s" % (node['publicKey'][0:10], node['publicKey'])
           print "out_%s.type DERIVE" % node['publicKey'][0:10]
           print "out_%s.draw STACK" % node['publicKey'][0:10]
-          print "out_%s.negative in" % node['publicKey'][0:10]
+          print "out_%s.negative in_%s" % (node['publicKey'][0:10], node['publicKey'][0:10])
           print "out_%s.min 0\n" % node['publicKey'][0:10]
 
     else:
