@@ -30,7 +30,7 @@ if len(sys.argv) > 1:
         config = True
 
 def name(peer):
-    name = peer['publicKey']
+    name = peer['publicKey'][0:10]
     if "user" in peer:
         name = peer['user']
     if os.getenv("NAMES") != None and os.getenv("NAMES") != "":
