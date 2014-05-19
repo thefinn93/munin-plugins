@@ -33,7 +33,7 @@ Note that it may not be necessary to specify `HOME`, but in my tests it was.
 ## cjdns_bandwidth
 Show's each peer's bandwidth usage thanks to [this](https://github.com/cjdelisle/cjdns/pull/284).
 Labels each peer based on the "user" field, if available (only available on
-incoming peers), otherwise just public key. If the enviromenal variable NAMES is
+incoming peers), otherwise just public key. If the environmental variable NAMES is
 set to a non empty string, it will use those names as well (names in this file
 override "user" from cjdns):
 
@@ -50,6 +50,11 @@ and a sample file:
         "8hgr62ylugxjyyhxkz254qtz60p781kbswmhhywtbb5rpzc5lxj0.k": "seanode"
 }
 ```
+
+Note that this will create one graph for every `authorizedPassword` currently in
+use and every outgoing peer. If one password is used multiple times it will get one
+graph. 7f3d83d is the last commit without this. If there is significant demand I'll
+make this disableable.
 
 ## cjdns_nodes
 Graphs the number of unique nodes in your routing table. This is a somewhat good
