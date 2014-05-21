@@ -40,12 +40,12 @@ if config:
     print "graph_category cjdns"
     print "graph_vlabel Connected Nodes"
     for peer in allPeers:
-        print "%s.label %s" % (allPeers[peer]['publicKey'][0:10], peer)
-        print "%s.draw AREASTACK" % allPeers[peer]['publicKey'][0:10]
+        print "%s.label %s" % (peer.replace(" ", "-"), peer)
+        print "%s.draw AREASTACK" % peer.replace(" ", "-")
     print "total.label total"
     print "total.type GAUGE"
     print "total.draw LINE2"
 else:
     for peer in allPeers:
-        print "%s.value %s" % (allPeers[peer]['publicKey'][0:10], allPeers[peer])
+        print "%s.value %s" % (peer.replace(" ", "-"), allPeers[peer])
     print "total.value %s" % cjdns.InterfaceController_peerStats()['total']
