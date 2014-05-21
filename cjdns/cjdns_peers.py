@@ -30,10 +30,11 @@ while True:
             name = p['user']
         if not name in allPeers:
             allPeers[name] = 0
-        allPeers[name] =+ 1
+        allPeers[name] += 1
     if (not 'more' in ps):
         break
     i += 1
+
 if config:
     print "graph_title Cjdns Peers"
     print "graph_info This graph shows the number of peers cjdns is connected to."
