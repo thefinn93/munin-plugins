@@ -23,14 +23,13 @@ while True:
     ps = cjdns.InterfaceController_peerStats(i);
     peers = ps['peers']
     for p in peers:
-        if p['state'] != 'ESTABLISHED':
-            continue
         name = p['publicKey'][-10:]
         if "user" in p:
             name = p['user']
         if not name in allPeers:
             allPeers[name] = 0
-        allPeers[name] += 1
+        if p['state'] == 'ESTABLISHED':
+            allPeers[name] += 1
     if (not 'more' in ps):
         break
     i += 1
