@@ -3,6 +3,7 @@
 import os
 import sys
 import json
+import re
 from hashlib import sha512
 
 try:
@@ -120,7 +121,7 @@ while more:
 #print json.dumps(peers, sort_keys=True, indent=4, separators=(',', ': '))
 
 for peer in peers:
-    print "multigraph cjdns_%s" % peer.replace(" ", "_").replace(".","_")
+    print "multigraph cjdns_%s" % re.sub(r'[^A-Za-z0-9_]', '_', peer)
     if config:
         print "graph_title cjdns bandwidth for %s" % peer
         print "graph_vlabel Bytes in (+) and out (-)"
