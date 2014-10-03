@@ -9,7 +9,7 @@ from hashlib import sha512
 try:
     from cjdnsadmin import connect,connectWithAdminInfo
 except ImportError:
-    sys.path.append(os.getenv("cjdnsadmin","/opt/cjdns/contrib/python/cjdnsadmin"))
+    sys.path.insert(0, os.getenv("cjdnsadmin","/opt/cjdns/contrib/python/cjdnsadmin"))
     from cjdnsadmin import connect,connectWithAdminInfo
 
 if os.getenv("cjdns_password") is not None:
