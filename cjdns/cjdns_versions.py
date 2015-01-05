@@ -21,7 +21,7 @@ timeout = int(os.getenv("TIMEOUT", "1000"))
 def getVersions():
     more = True
     i = 0
-    versionData = {'error': 0, 'timeout': 0}
+    versionData = {}
     nodes = []
     while more:
         table = cjdns.NodeStore_dumpTable(i)
