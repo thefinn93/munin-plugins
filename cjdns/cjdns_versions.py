@@ -23,6 +23,8 @@ def getVersions():
     i = 0
     versionData = {}
     nodes = []
+    highestversion = 0
+    lowestversion = 2
     while more:
         table = cjdns.NodeStore_dumpTable(i)
         more = "more" in table
@@ -30,8 +32,13 @@ def getVersions():
             if not route['ip'] in nodes:
                 if not route['version'] in versionData:
                     versionData[route['version']] = 0
+                    if route['version'] > highestversion:
+                        highestversion = route['version']
                 versionData[route['version']] += 1
         i += 1
+    for v in range(lowestversion, highestversion):
+        if not v in versionData:
+            versionData[v] = 0
     return versionData
 
 config = False
