@@ -1,47 +1,38 @@
 #!/usr/bin/env python
-import sys, os
+import sys
+import os
 try:
-    from cjdnsadmin import connect,connectWithAdminInfo
+    from cjdnsadmin import connect, connectWithAdminInfo
 except ImportError:
-    sys.path.append(os.getenv("cjdnsadmin","/opt/cjdns/contrib/python/cjdnsadmin"))
-    from cjdnsadmin import connect,connectWithAdminInfo
-    
+    sys.path.append(os.getenv("cjdnsadmin",
+                              "/opt/cjdns/contrib/python/cjdnsadmin"))
+    from cjdnsadmin import connect, connectWithAdminInfo
+
 if os.getenv("cjdns_password") is not None:
-    cjdns = connect(os.getenv("cjdns_ip", "127.0.0.1"), int(os.getenv("cjdns_port", "11234")), os.getenv("cjdns_password"))
+    cjdns = connect(os.getenv("cjdns_ip", "127.0.0.1"),
+                    int(os.getenv("cjdns_port", "11234")),
+                    os.getenv("cjdns_password"))
 else:
     cjdns = connectWithAdminInfo()
 
 timeout = int(os.getenv("TIMEOUT", "1000"))
 
+
 def getVersions():
     more = True
     i = 0
-    versions = {'error': 0, 'timeout': 0}
+    versionData = {'error': 0, 'timeout': 0}
     nodes = []
     while more:
         table = cjdns.NodeStore_dumpTable(i)
         more = "more" in table
         for route in table['routingTable']:
             if not route['ip'] in nodes:
-                nodes.append(route['ip'])
-                #print "Pinging %s..." % route['ip']
-                if timeout is not None:
-                    ping = cjdns.RouterModule_pingNode(route['ip'], timeout)
-                else:
-                    ping = cjdns.RouterModule_pingNode(route['ip'])
-                if 'version' in ping:
-                    if not ping['version'] in versions:
-                        versions[ping['version']] = 0
-                    versions[ping['version']] += 1
-                elif 'result' in ping:
-                    if ping['result'] == 'timeout':
-                        #print "Timed out"
-                        versions['timeout'] += 1
-                elif 'error' in ping:
-                    #print ping['error']
-                    versions['error'] += 1
+                if not route['version'] in versionData:
+                    versionData[route['version']] = 0
+                versionData[route['version']] += 1
         i += 1
-    return versions
+    return versionData
 
 config = False
 if len(sys.argv) > 1:
@@ -54,9 +45,9 @@ graph_category cjdns
 graph_vlabel nodes
 """
     for version in getVersions().keys():
-        print "%s.label %s" % (version, version)
-        print "%s.draw AREASTACK" % version
+        print "v%s.label v%s" % (version, version)
+        print "v%s.draw AREASTACK" % version
 else:
     versions = getVersions()
     for version in versions.keys():
-        print "%s.value %s" % (version, versions[version])
+        print "v%s.value %s" % (version, versions[version])
