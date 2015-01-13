@@ -124,7 +124,6 @@ for peer in peers:
     print "multigraph cjdns_%s" % (re.sub(r'[^A-Za-z0-9_]', '_', peer))[0:20]
     if config:
         print "graph_title cjdns bandwidth for %s" % peer
-        print "graph_args --upper-limit 130"
         print "graph_vlabel Bytes in (+) and out (-)"
         print "graph_category cjdns"
         for node in peers[peer]:
