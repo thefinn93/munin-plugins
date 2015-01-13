@@ -50,7 +50,7 @@ if config:
 graph_info This graph shows the which version of cjdns people are running
 graph_category cjdns
 graph_vlabel nodes
-print "graph_args --upper-limit 130
+graph_args --upper-limit 130
 """
     for version in getVersions().keys():
         print "v%s.label v%s" % (version, version)
