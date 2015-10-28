@@ -8,11 +8,11 @@ except ImportError:
                               "/opt/cjdns/contrib/python/cjdnsadmin"))
     from cjdnsadmin import connect, connectWithAdminInfo
 
-if os.getenv("cjdns_password") is not None:
+try:
     cjdns = connect(os.getenv("cjdns_ip", "127.0.0.1"),
                     int(os.getenv("cjdns_port", "11234")),
                     os.getenv("cjdns_password", "NONE"))
-else:
+except Exception:
     cjdns = connectWithAdminInfo()
 
 timeout = int(os.getenv("TIMEOUT", "1000"))
