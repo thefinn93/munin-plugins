@@ -11,7 +11,7 @@ except ImportError:
 if os.getenv("cjdns_password") is not None:
     cjdns = connect(os.getenv("cjdns_ip", "127.0.0.1"),
                     int(os.getenv("cjdns_port", "11234")),
-                    os.getenv("cjdns_password"))
+                    os.getenv("cjdns_password", "NONE"))
 else:
     cjdns = connectWithAdminInfo()
 
