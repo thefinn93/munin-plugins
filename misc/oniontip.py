@@ -4,6 +4,7 @@ import sys
 import os
 
 nodes = os.getenv("fingerprints").split(" ")
+addresses = os.getenv("addresses").split(" ")
 
 request = requests.get("https://oniontip.com/result.json")
 if isinstance(request.json, dict):
@@ -22,9 +23,9 @@ graph_category tor
 graph_vlabel Position
 """)
     for node in results['results']:
-        if node['fp'] in nodes:
+        if node['fp'] in nodes or node['bitcoin_address'] in addresses:
             print("%s.label %s" % (node['fp'], node['nick']))
 else:
     for node in results['results']:
-        if node['fp'] in nodes:
+        if node['fp'] in nodes or node['bitcoin_address'] in addresses:
             print("%s.value %s" % (node['fp'], node['index']))
