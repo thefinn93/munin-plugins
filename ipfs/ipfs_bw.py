@@ -4,7 +4,7 @@ import requests
 import os
 import sys
 
-api_base = os.env("IPFS_API", "http://localhost:5001/api/v0")
+api_base = os.getenv("IPFS_API", "http://localhost:5001/api/v0")
 
 if "config" in sys.argv:
     print("""graph_title IPFS bandwidth
