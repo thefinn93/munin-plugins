@@ -15,7 +15,8 @@ if len(sys.argv) > 1:
 url = os.environ.get("URL", "https://192.168.100.1/Docsis_system.asp")
 status = requests.get(url, verify=False)
 soup = BeautifulSoup(status.content, "html.parser")
-tds = soup.find_all(attrs={"headers": "ch_pwr"}) + soup.find_all(attrs={"headers": "up_pwr"}
+tds = soup.find_all(attrs={"headers": "ch_pwr"}) + soup.find_all(attrs={"headers": "up_pwr"})
+
 if config:
     model = soup.find(attrs={"headers": "Model"}).text.strip()
     print("\n".join([
