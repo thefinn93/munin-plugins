@@ -78,7 +78,7 @@ for graph_name, graph in graphs.items():
     print("multigraph {}_{}".format(os.path.basename(sys.argv[0]), graph_name))
     if config:
         for field, value in graph['graph'].items():
-            print("graph_{} {}".format(field, value))
+            print("graph_{} {}".format(field, value.format(model=model)))
         for field, value in graph['fields'].items():
             print("{}.label {}".format(field, value['label']))
     else:
