@@ -34,4 +34,4 @@ for td in tds:
     if config:
         print("{}.label {}".format(key, name))
     else:
-        print("{} {}".format(key, value))
+        print("{}.value {}".format(key, value))
