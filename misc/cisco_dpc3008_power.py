@@ -15,23 +15,72 @@ if len(sys.argv) > 1:
 url = os.environ.get("URL", "https://192.168.100.1/Docsis_system.asp")
 status = requests.get(url, verify=False)
 soup = BeautifulSoup(status.content, "html.parser")
-tds = soup.find_all(attrs={"headers": "ch_pwr"}) + soup.find_all(attrs={"headers": "up_pwr"})
+model = soup.find(attrs={"headers": "Model"}).text.strip()
+tables = soup.find_all('table', attrs={'class': 'std'})
 
-if config:
-    model = soup.find(attrs={"headers": "Model"}).text.strip()
-    print("\n".join([
-        "graph_title {model} Stats",
-        "graph_info This graph shows the power levels of a {model} DOCSIS modem",
-        "graph_category network",
-        "graph_vlabel dBmV"]).format(model=model))
+graphs = {
+    "power_down": {
+        "graph": {
+            "title": "{model} Downstream Power",
+            "info": "Shows the levels on the downstream channels",
+            "category": "network",
+            "vlabel": "dBmV"
+        }, "fields": {}
+    },
+    "power_up": {
+        "graph": {
+            "title": "{model} Upstream Power",
+            "info": "Shows the levels on the upstream channels",
+            "category": "network",
+            "vlabel": "dBmV"
+        }, "fields": {}
+    },
+    "snr_down": {
+        "graph": {
+            "title": "{model} Downstream Signal to Noise Ratio",
+            "info": "Shows the SNR on the downstream channels",
+            "category": "network",
+            "vlabel": "dB"
+        }, "fields": {}
+    }
+}
 
-for td in tds:
-    key = td.attrs['headers'][0].strip()
-    channel = key.split('_')[-1] # "channel_1" or "up_channel_1"
-    up = key.startswith("up_")
-    name = "{}Channel {}".format("Upstream " if up else "", channel)
-    value = td.next.strip()
+# Downstream
+for tr in tables[3].find_all('tr')[1:]:
+    power_td, snr_td = tr.find_all('td')[1:]
+    key = power_td.attrs['headers'][0].strip()
+    label = "Channel {}".format(key.split("_")[-1])
+    power = power_td.next.strip()
+    snr = snr_td.next.strip()
+    graphs['power_down']['fields'][key] = {
+        "label": label,
+        "value": power
+    }
+    graphs['snr_down']['fields'][key] = {
+        "label": label,
+        "value": snr
+    }
+
+# Upstream
+for tr in tables[4].find_all('tr')[1:]:
+    power_td = tr.find('td', attrs={"headers": "up_pwr"})
+    key = power_td.attrs['headers'][0].strip()
+    label = "Channel {}".format(key.split("_")[-1])
+    power = power_td.next.strip()
+    graphs['power_up']['fields'][key] = {
+        "label": label,
+        "value": power
+    }
+
+
+
+for graph_name, graph in graphs.items():
+    print("multigraph {}_{}".format(os.path.basename(sys.argv[0]), graph_name))
     if config:
-        print("{}.label {}".format(key, name))
+        for field, value in graph['graph'].items():
+            print("graph_{} {}".format(field, value))
+        for field, value in graph['fields'].items():
+            print("{}.label {}".format(field, value['label']))
     else:
-        print("{}.value {}".format(key, value))
+        for field, value in graph['fields'].items():
+            print("{}.value {}".format(field, value['value']))
